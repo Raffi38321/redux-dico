@@ -11,7 +11,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-yellow-300 gap-4">
+    <div className="flex flex-col items-center justify-center gap-4">
       <LoginInput onLogin={onLogin} />
 
       <FooterLoginRegister
