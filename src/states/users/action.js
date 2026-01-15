@@ -4,11 +4,11 @@ const ActionType = {
   REGISTER_USER: "REGISTER_USER",
 };
 
-function registerUser(user) {
+function receiveUserFromApi(users) {
   return {
     type: ActionType.REGISTER_USER,
     payload: {
-      user,
+      users,
     },
   };
 }
@@ -24,4 +24,4 @@ function asyncRegisterUser({ name, email, password }) {
   };
 }
 
-export { registerUser, asyncRegisterUser, ActionType };
+export { receiveUserFromApi, asyncRegisterUser, ActionType };

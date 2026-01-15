@@ -66,7 +66,37 @@ async function getProfile() {
   return data.user;
 }
 
+async function getAllUsers() {
+  const response = await api.get("/users");
+  const { status, data, message } = response.data;
+  if (status !== "success") {
+    throw new Error(message);
+  }
+  return data.users;
+}
+
+async function getAllThreads() {
+  const response = await api.get("/threads");
+  const { status, data, message } = response.data;
+  if (status !== "success") {
+    throw new Error(message);
+  }
+  return data.threads;
+}
+
+async function createThread({ title, body, category }) {
+  const response = await api.post("/threads", { title, body, category });
+  const { status, data, message } = response.data;
+  if (status !== "success") {
+    throw new Error(message);
+  }
+  return data.thread;
+}
+
 export default {
+  createThread,
+  getAllThreads,
+  getAllUsers,
   putAccessToken,
   getAccessToken,
   register,
