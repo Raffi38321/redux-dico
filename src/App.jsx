@@ -4,6 +4,9 @@ import RegisterPage from "./pages/RegisterPage";
 import { useDispatch, useSelector } from "react-redux";
 import Navbar from "./components/Navbar";
 import { asyncUnsetAuthUser } from "./states/authUser/action";
+import HomePage from "./pages/HomePage";
+import { useEffect } from "react";
+import { asyncPreloadProcess } from "./states/isPreload/action";
 
 function App() {
   const { authUser = null } = useSelector((states) => states);
@@ -12,6 +15,10 @@ function App() {
   const signOut = () => {
     dispatch(asyncUnsetAuthUser());
   };
+
+  useEffect(() => {
+    dispatch(asyncPreloadProcess());
+  }, [dispatch]);
   if (authUser === null) {
     return (
       <>
@@ -34,6 +41,7 @@ function App() {
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/" element={<HomePage />} />
         </Routes>
       </main>
     </>

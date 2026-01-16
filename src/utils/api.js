@@ -72,6 +72,7 @@ async function getAllUsers() {
   if (status !== "success") {
     throw new Error(message);
   }
+  console.log("ini dari api", data.users);
   return data.users;
 }
 
@@ -81,6 +82,7 @@ async function getAllThreads() {
   if (status !== "success") {
     throw new Error(message);
   }
+  console.log("ini dari api", data.threads);
   return data.threads;
 }
 

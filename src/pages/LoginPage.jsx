@@ -3,11 +3,14 @@ import LoginInput from "../components/LoginInput";
 import FooterLoginRegister from "../components/FooterLoginRegister";
 import { useDispatch } from "react-redux";
 import { asyncSetAuthUser } from "../states/authUser/action";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const dispath = useDispatch();
+  const navigate = useNavigate();
   const onLogin = ({ password, email }) => {
     dispath(asyncSetAuthUser({ email, password }));
+    navigate("/");
   };
 
   return (

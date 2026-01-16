@@ -2,8 +2,8 @@ import { ActionType } from "./action";
 
 const userReducer = (users = [], action = {}) => {
   switch (action.type) {
-    case ActionType.REGISTER_USER:
-      return action.type.payload;
+    case ActionType.RECEIVE_USERS:
+      return action.payload.users;
     default:
       return users;
   }

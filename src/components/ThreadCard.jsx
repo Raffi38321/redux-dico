@@ -8,8 +8,16 @@ import {
 } from "react-icons/hi";
 
 const ThreadCard = ({ thread }) => {
-  const { id, title, body, createdAt, upVotesBy, downVotesBy, totalComments } =
-    thread;
+  const {
+    id,
+    title,
+    body,
+    createdAt,
+    upVotesBy,
+    downVotesBy,
+    totalComments,
+    user,
+  } = thread;
 
   const date = postedAt(createdAt);
 
@@ -30,7 +38,7 @@ const ThreadCard = ({ thread }) => {
       <div className="flex items-center justify-between text-sm font-bold">
         {/* Meta */}
         <span className="uppercase text-gray-700">{date}</span>
-
+        <span className="uppercase text-gray-700">{user.name}</span>
         {/* Actions */}
         <div className="flex items-center gap-4">
           {/* Upvote */}
