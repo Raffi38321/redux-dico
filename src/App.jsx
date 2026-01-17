@@ -10,6 +10,7 @@ import { asyncPreloadProcess } from "./states/isPreload/action";
 import Footer from "./components/Footer";
 import CreateThreadsPage from "./pages/CreateThreadsPage";
 import LeaderBoardPage from "./pages/LeaderBoardPage";
+import DetailedThreadPage from "./pages/DetailedThreadPage";
 
 function App() {
   const { authUser = null } = useSelector((states) => states);
@@ -24,7 +25,7 @@ function App() {
   }, [dispatch]);
   if (authUser === null) {
     return (
-      <>
+      <div>
         <main className=" min-h-screen  bg-yellow-300 flex justify-center items-center ">
           <Routes>
             <Route path="/login" element={<LoginPage />} />
@@ -32,7 +33,7 @@ function App() {
             <Route path="/*" element={<LoginPage />} />
           </Routes>
         </main>
-      </>
+      </div>
     );
   }
   return (
@@ -45,6 +46,8 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/create-thread" element={<CreateThreadsPage />} />
             <Route path="/leaderboards" element={<LeaderBoardPage />} />
+            <Route path="/threads/:id" element={<DetailedThreadPage />} />
+            <Route path="/*" element={<HomePage />} />
           </Routes>
         </div>
       </main>

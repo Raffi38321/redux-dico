@@ -16,8 +16,7 @@ function receiveUserFromApi(users) {
 function asyncRegisterUser({ name, email, password }) {
   return async () => {
     try {
-      const res = await api.register({ name, email, password });
-      console.log(res.data);
+      await api.register({ name, email, password });
     } catch (error) {
       alert(error.message);
     }

@@ -95,6 +95,15 @@ async function createThread({ title, body, category }) {
   return data.thread;
 }
 
+async function createComment(threadId, content) {
+  const response = await api.post(`/threads/${threadId}/comments`, { content });
+  const { status, data, message } = response.data;
+  if (status !== "success") {
+    throw new Error(message);
+  }
+  return data.comment;
+}
+
 async function getLeaderBoards() {
   const response = await api.get("/leaderboards");
   const { status, data, message } = response.data;
@@ -104,9 +113,80 @@ async function getLeaderBoards() {
   return data.leaderboards;
 }
 
+async function upVoteThread(threadId) {
+  const response = await api.post(`/threads/${threadId}/up-vote`);
+  const { status, data, message } = response.data;
+  if (status !== "success") {
+    throw new Error(message);
+  }
+  return data.vote;
+}
+
+async function downVoteThread(threadId) {
+  const response = await api.post(`/threads/${threadId}/down-vote`);
+  const { status, data, message } = response.data;
+  if (status !== "success") {
+    throw new Error(message);
+  }
+  return data.vote;
+}
+
+async function neutralVoteThread(threadId) {
+  const response = await api.post(`/threads/${threadId}/neutral-vote`);
+  const { status, data, message } = response.data;
+  if (status !== "success") {
+    throw new Error(message);
+  }
+  return data.vote;
+}
+
+async function upVoteComment(threadId, commentId) {
+  const response = await api.post(
+    `/threads/${threadId}/comments/${commentId}/up-vote`,
+  );
+  const { status, data, message } = response.data;
+  if (status !== "success") {
+    throw new Error(message);
+  }
+  return data.vote;
+}
+
+async function downVoteComment(threadId, commentId) {
+  const response = await api.post(
+    `/threads/${threadId}/comments/${commentId}/down-vote`,
+  );
+  const { status, data, message } = response.data;
+  if (status !== "success") {
+    throw new Error(message);
+  }
+  return data.vote;
+}
+
+async function neutralVoteComment(threadId, commentId) {
+  const response = await api.post(
+    `/threads/${threadId}/comments/${commentId}/neutral-vote`,
+  );
+  const { status, data, message } = response.data;
+  if (status !== "success") {
+    throw new Error(message);
+  }
+  return data.vote;
+}
+
+async function getThreadDetail(threadId) {
+  const response = await api.get(`/threads/${threadId}`);
+  const { status, data, message } = response.data;
+  if (status !== "success") {
+    throw new Error(message);
+  }
+  return data.detailThread;
+}
+
 export default {
   getLeaderBoards,
   createThread,
+  getThreadDetail,
+  createComment,
   getAllThreads,
   getAllUsers,
   putAccessToken,
@@ -115,4 +195,10 @@ export default {
   login,
   getProfile,
   deleteAccessToken,
+  upVoteThread,
+  downVoteThread,
+  neutralVoteThread,
+  upVoteComment,
+  downVoteComment,
+  neutralVoteComment,
 };

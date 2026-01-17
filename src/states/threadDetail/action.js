@@ -1,46 +1,51 @@
 import api from "../../utils/api";
 import { hideLoading, showLoading } from "@dimasmds/react-redux-loading-bar";
 const actionType = {
-  RECEIVE_THREADS: "RECEIVE_THREADS",
-  CREATE_THREADS: "CREATE_THREADS",
-  VOTE_THREAD: "VOTE_THREAD",
-  VOTE_COMMENT: "VOTE_COMMENT",
+  RECEIVE_THREAD_DETAIL: "RECEIVE_THREAD_DETAIL",
+  CLEAR_THREAD_DETAIL: "CLEAR_THREAD_DETAIL",
+  ADD_COMMENT: "ADD_COMMENT",
+  VOTE_THREAD_DETAIL: "VOTE_THREAD_DETAIL",
+  VOTE_COMMENT_DETAIL: "VOTE_COMMENT_DETAIL",
 };
 
-function receiveThreadsFromApi(threads) {
+function receiveThreadDetailActionCreator(threadDetail) {
   return {
-    type: actionType.RECEIVE_THREADS,
+    type: actionType.RECEIVE_THREAD_DETAIL,
     payload: {
-      threads,
+      threadDetail,
     },
   };
 }
 
-function addThreadCreator(thread) {
+function clearThreadDetailActionCreator() {
   return {
-    type: actionType.CREATE_THREADS,
+    type: actionType.CLEAR_THREAD_DETAIL,
+  };
+}
+
+function addCommentActionCreator(comment) {
+  return {
+    type: actionType.ADD_COMMENT,
     payload: {
-      thread,
+      comment,
     },
   };
 }
 
-function voteThreadActionCreator({ threadId, vote, userId }) {
+function voteThreadDetailActionCreator({ vote, userId }) {
   return {
-    type: actionType.VOTE_THREAD,
+    type: actionType.VOTE_THREAD_DETAIL,
     payload: {
-      threadId,
       vote,
       userId,
     },
   };
 }
 
-function voteCommentActionCreator({ threadId, commentId, vote, userId }) {
+function voteCommentDetailActionCreator({ commentId, vote, userId }) {
   return {
-    type: actionType.VOTE_COMMENT,
+    type: actionType.VOTE_COMMENT_DETAIL,
     payload: {
-      threadId,
       commentId,
       vote,
       userId,
@@ -48,13 +53,13 @@ function voteCommentActionCreator({ threadId, commentId, vote, userId }) {
   };
 }
 
-function asyncAddThread({ title, body, category }) {
+function asyncReceiveThreadDetail(threadId) {
   return async (dispatch) => {
     dispatch(showLoading());
+    dispatch(clearThreadDetailActionCreator());
     try {
-      const thread = await api.createThread({ title, body, category });
-      dispatch(addThreadCreator(thread));
-      console.log(thread);
+      const threadDetail = await api.getThreadDetail(threadId);
+      dispatch(receiveThreadDetailActionCreator(threadDetail));
     } catch (error) {
       alert(error.message);
     }
@@ -62,14 +67,28 @@ function asyncAddThread({ title, body, category }) {
   };
 }
 
-function asyncUpVoteThread(threadId) {
+function asyncAddComment(threadId, content) {
+  return async (dispatch) => {
+    dispatch(showLoading());
+    try {
+      const comment = await api.createComment(threadId, content);
+      dispatch(addCommentActionCreator(comment));
+    } catch (error) {
+      alert(error.message);
+    }
+    dispatch(hideLoading());
+  };
+}
+
+// Thread voting async actions for detail page
+function asyncUpVoteThreadDetail(threadId) {
   return async (dispatch, getState) => {
     const { authUser } = getState();
+    dispatch(showLoading());
     try {
       const vote = await api.upVoteThread(threadId);
       dispatch(
-        voteThreadActionCreator({
-          threadId,
+        voteThreadDetailActionCreator({
           vote: { ...vote, voteType: 1 },
           userId: authUser.id,
         }),
@@ -77,17 +96,18 @@ function asyncUpVoteThread(threadId) {
     } catch (error) {
       alert(error.message);
     }
+    dispatch(hideLoading());
   };
 }
 
-function asyncDownVoteThread(threadId) {
+function asyncDownVoteThreadDetail(threadId) {
   return async (dispatch, getState) => {
     const { authUser } = getState();
+    dispatch(showLoading());
     try {
       const vote = await api.downVoteThread(threadId);
       dispatch(
-        voteThreadActionCreator({
-          threadId,
+        voteThreadDetailActionCreator({
           vote: { ...vote, voteType: -1 },
           userId: authUser.id,
         }),
@@ -95,17 +115,17 @@ function asyncDownVoteThread(threadId) {
     } catch (error) {
       alert(error.message);
     }
+    dispatch(hideLoading());
   };
 }
 
-function asyncNeutralVoteThread(threadId) {
+function asyncNeutralVoteThreadDetail(threadId) {
   return async (dispatch, getState) => {
     const { authUser } = getState();
     try {
       const vote = await api.neutralVoteThread(threadId);
       dispatch(
-        voteThreadActionCreator({
-          threadId,
+        voteThreadDetailActionCreator({
           vote: { ...vote, voteType: 0 },
           userId: authUser.id,
         }),
@@ -116,14 +136,13 @@ function asyncNeutralVoteThread(threadId) {
   };
 }
 
-function asyncUpVoteComment(threadId, commentId) {
+function asyncUpVoteCommentDetail(threadId, commentId) {
   return async (dispatch, getState) => {
     const { authUser } = getState();
     try {
       const vote = await api.upVoteComment(threadId, commentId);
       dispatch(
-        voteCommentActionCreator({
-          threadId,
+        voteCommentDetailActionCreator({
           commentId,
           vote: { ...vote, voteType: 1 },
           userId: authUser.id,
@@ -135,14 +154,13 @@ function asyncUpVoteComment(threadId, commentId) {
   };
 }
 
-function asyncDownVoteComment(threadId, commentId) {
+function asyncDownVoteCommentDetail(threadId, commentId) {
   return async (dispatch, getState) => {
     const { authUser } = getState();
     try {
       const vote = await api.downVoteComment(threadId, commentId);
       dispatch(
-        voteCommentActionCreator({
-          threadId,
+        voteCommentDetailActionCreator({
           commentId,
           vote: { ...vote, voteType: -1 },
           userId: authUser.id,
@@ -154,14 +172,13 @@ function asyncDownVoteComment(threadId, commentId) {
   };
 }
 
-function asyncNeutralVoteComment(threadId, commentId) {
+function asyncNeutralVoteCommentDetail(threadId, commentId) {
   return async (dispatch, getState) => {
     const { authUser } = getState();
     try {
       const vote = await api.neutralVoteComment(threadId, commentId);
       dispatch(
-        voteCommentActionCreator({
-          threadId,
+        voteCommentDetailActionCreator({
           commentId,
           vote: { ...vote, voteType: 0 },
           userId: authUser.id,
@@ -174,16 +191,16 @@ function asyncNeutralVoteComment(threadId, commentId) {
 }
 
 export {
-  asyncAddThread,
-  receiveThreadsFromApi,
   actionType,
-  addThreadCreator,
-  asyncUpVoteThread,
-  asyncDownVoteThread,
-  asyncNeutralVoteThread,
-  asyncUpVoteComment,
-  asyncDownVoteComment,
-  asyncNeutralVoteComment,
-  voteThreadActionCreator,
-  voteCommentActionCreator,
+  receiveThreadDetailActionCreator,
+  clearThreadDetailActionCreator,
+  addCommentActionCreator,
+  asyncReceiveThreadDetail,
+  asyncAddComment,
+  asyncUpVoteThreadDetail,
+  asyncDownVoteThreadDetail,
+  asyncNeutralVoteThreadDetail,
+  asyncUpVoteCommentDetail,
+  asyncDownVoteCommentDetail,
+  asyncNeutralVoteCommentDetail,
 };
