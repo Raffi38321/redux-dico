@@ -7,6 +7,7 @@ import { asyncUnsetAuthUser } from "./states/authUser/action";
 import HomePage from "./pages/HomePage";
 import { useEffect } from "react";
 import { asyncPreloadProcess } from "./states/isPreload/action";
+import Footer from "./components/Footer";
 
 function App() {
   const { authUser = null } = useSelector((states) => states);
@@ -34,9 +35,7 @@ function App() {
   }
   return (
     <>
-      <header>
-        <Navbar authUser={authUser} signOut={signOut} />
-      </header>
+      <Navbar authUser={authUser} signOut={signOut} />
       <main className=" min-h-screen  bg-yellow-300 flex justify-center items-center">
         <Routes>
           <Route path="/login" element={<LoginPage />} />
@@ -44,6 +43,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
         </Routes>
       </main>
+      <Footer />
     </>
   );
 }

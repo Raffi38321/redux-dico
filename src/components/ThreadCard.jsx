@@ -22,7 +22,7 @@ const ThreadCard = ({ thread }) => {
   const date = postedAt(createdAt);
 
   return (
-    <article className="p-5 bg-white border-4 border-black shadow-[6px_6px_0_0_#000]">
+    <article className="p-5 bg-white border-4 border-black shadow-[6px_6px_0_0_#000] mt-10">
       {/* Title */}
       <Link
         to={`/threads/${id}`}
@@ -32,13 +32,15 @@ const ThreadCard = ({ thread }) => {
       </Link>
 
       {/* Body */}
-      <p className="text-sm mb-4 line-clamp-3">{body}</p>
+      <p className="text-sm mb-4 line-clamp-2">{body}</p>
 
       {/* Footer */}
-      <div className="flex items-center justify-between text-sm font-bold">
+      <div className="flex items-center text-sm font-bold gap-6">
         {/* Meta */}
         <span className="uppercase text-gray-700">{date}</span>
-        <span className="uppercase text-gray-700">{user.name}</span>
+        <span className="uppercase text-black-700">
+          Dibuat Oleh {user.name}
+        </span>
         {/* Actions */}
         <div className="flex items-center gap-4">
           {/* Upvote */}
