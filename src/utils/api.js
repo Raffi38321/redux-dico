@@ -95,7 +95,17 @@ async function createThread({ title, body, category }) {
   return data.thread;
 }
 
+async function getLeaderBoards() {
+  const response = await api.get("/leaderboards");
+  const { status, data, message } = response.data;
+  if (status !== "success") {
+    throw new Error(message);
+  }
+  return data.leaderboards;
+}
+
 export default {
+  getLeaderBoards,
   createThread,
   getAllThreads,
   getAllUsers,
