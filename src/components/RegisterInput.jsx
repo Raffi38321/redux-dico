@@ -13,7 +13,6 @@ const RegisterInput = ({ register }) => {
           <h2 className="text-3xl font-extrabold mb-6 border-b-4 border-black pb-2">
             Registrasi Dulu le
           </h2>
-          \
           <InputBox
             change={onNameChange}
             input={name}
@@ -28,7 +27,7 @@ const RegisterInput = ({ register }) => {
           />
           <InputBox
             change={onPasswordChange}
-            input={email}
+            input={password}
             type="password"
             displayName={"Password"}
           />

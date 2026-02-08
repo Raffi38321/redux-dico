@@ -13,7 +13,6 @@ const CreateThreadsPage = () => {
   const navigate = useNavigate();
   const onPostingThread = (e) => {
     e.preventDefault();
-    console.log({ title, body, category });
     dispatch(asyncAddThread({ title, body, category }));
     navigate("/");
   };

@@ -14,7 +14,6 @@ const threadDetailReducer = (threadDetail = null, action = {}) => {
     case actionType.VOTE_THREAD_DETAIL: {
       const { vote, userId } = action.payload;
 
-      // Remove existing vote from this user if any
       const updatedUpVotesBy = threadDetail.upVotesBy.filter(
         (id) => id !== userId,
       );
@@ -22,13 +21,11 @@ const threadDetailReducer = (threadDetail = null, action = {}) => {
         (id) => id !== userId,
       );
 
-      // Add vote based on voteType
       if (vote.voteType === 1) {
         updatedUpVotesBy.push(userId);
       } else if (vote.voteType === -1) {
         updatedDownVotesBy.push(userId);
       }
-      // voteType 0 means neutral, so we just remove from both arrays (already done above)
 
       return {
         ...threadDetail,

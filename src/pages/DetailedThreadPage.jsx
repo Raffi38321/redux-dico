@@ -127,7 +127,7 @@ function DetailedThreadPage() {
 
           {threadDetail.comments.length === 0 ? (
             <div className="bg-pink-300 border-4 border-black shadow-[6px_6px_0_0_#000] p-6 text-center font-bold">
-              NO COMMENTS YET 🚀
+              Belum Ada Komen
             </div>
           ) : (
             <div className="space-y-4">

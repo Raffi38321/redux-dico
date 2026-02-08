@@ -11,6 +11,7 @@ import Footer from "./components/Footer";
 import CreateThreadsPage from "./pages/CreateThreadsPage";
 import LeaderBoardPage from "./pages/LeaderBoardPage";
 import DetailedThreadPage from "./pages/DetailedThreadPage";
+import Loading from "./components/Loading";
 
 function App() {
   const { authUser = null } = useSelector((states) => states);
@@ -26,6 +27,8 @@ function App() {
   if (authUser === null) {
     return (
       <div>
+        <Loading />
+
         <main className=" min-h-screen  bg-yellow-300 flex justify-center items-center ">
           <Routes>
             <Route path="/login" element={<LoginPage />} />
@@ -38,6 +41,7 @@ function App() {
   }
   return (
     <div className="min-h-screen bg-yellow-300 flex flex-col">
+      <Loading />
       <Navbar authUser={authUser} signOut={signOut} />
 
       <main className="flex-1 flex justify-center">

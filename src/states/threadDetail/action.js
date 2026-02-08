@@ -80,7 +80,6 @@ function asyncAddComment(threadId, content) {
   };
 }
 
-// Thread voting async actions for detail page
 function asyncUpVoteThreadDetail(threadId) {
   return async (dispatch, getState) => {
     const { authUser } = getState();

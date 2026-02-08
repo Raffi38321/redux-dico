@@ -3,7 +3,7 @@ import LoadingBar from "@dimasmds/react-redux-loading-bar";
 
 const Loading = () => {
   return (
-    <div className="sticky top-0 w-full z-[9999]">
+    <div className="bg-white sticky top-0 z-100">
       <LoadingBar />
     </div>
   );

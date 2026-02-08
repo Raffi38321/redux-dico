@@ -3,12 +3,14 @@ import RegisterInput from "../components/RegisterInput";
 import FooterLoginRegister from "../components/FooterLoginRegister";
 import { useDispatch } from "react-redux";
 import { asyncRegisterUser } from "../states/users/action";
+import { useNavigate } from "react-router-dom";
 
 const RegisterPage = () => {
+  const navigate = useNavigate();
   const dispath = useDispatch();
   const register = ({ email, password, name }) => {
-    console.log("ini dari page", email, password, name);
     dispath(asyncRegisterUser({ email, password, name }));
+    navigate("/login");
   };
   return (
     <div className="flex flex-col items-center justify-center gap-4">
