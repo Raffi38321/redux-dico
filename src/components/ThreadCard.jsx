@@ -1,19 +1,19 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { postedAt } from "../utils/dateFormat";
+import React from 'react';
+import {Link} from 'react-router-dom';
+import postedAt from '../utils/dateFormat.js';
 import {
   HiOutlineChatAlt2,
   HiOutlineThumbUp,
   HiOutlineThumbDown,
-} from "react-icons/hi";
-import { useDispatch, useSelector } from "react-redux";
+} from 'react-icons/hi';
+import {useDispatch, useSelector} from 'react-redux';
 import {
   asyncDownVoteThread,
   asyncUpVoteThread,
   asyncNeutralVoteThread,
-} from "../states/threads/action";
+} from '../states/threads/action';
 
-const ThreadCard = ({ thread }) => {
+const ThreadCard = ({thread}) => {
   const {
     id,
     title,
@@ -26,7 +26,7 @@ const ThreadCard = ({ thread }) => {
   } = thread;
 
   const dispatch = useDispatch();
-  const { authUser } = useSelector((states) => states);
+  const {authUser} = useSelector((states) => states);
   const date = postedAt(createdAt);
   const isUpVoted = upVotesBy.includes(authUser.id);
   const isDownVoted = downVotesBy.includes(authUser.id);
@@ -71,7 +71,7 @@ const ThreadCard = ({ thread }) => {
                          border-4 border-black font-bold
                          shadow-[3px_3px_0_0_#000]
                          transition
-                         ${isUpVoted ? "bg-red-600" : "bg-white hover:bg-green-200"}
+                         ${isUpVoted ? 'bg-red-600' : 'bg-white hover:bg-green-200'}
                        `}
           >
             <HiOutlineThumbUp className="text-lg" /> {upVotesBy.length}
@@ -84,7 +84,7 @@ const ThreadCard = ({ thread }) => {
                 border-4 border-black font-bold
                 shadow-[3px_3px_0_0_#000]
                 transition
-                ${isDownVoted ? "bg-red-600" : "bg-white hover:bg-red-200"}
+                ${isDownVoted ? 'bg-red-600' : 'bg-white hover:bg-red-200'}
               `}
           >
             <HiOutlineThumbDown className="text-lg" /> {downVotesBy.length}

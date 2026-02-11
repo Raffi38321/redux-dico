@@ -1,16 +1,16 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { asyncAddComment } from "../states/threadDetail/action";
+import {useState} from 'react';
+import {useDispatch} from 'react-redux';
+import {asyncAddComment} from '../states/threadDetail/action';
 
-function CommentInput({ threadId }) {
-  const [content, setContent] = useState("");
+function CommentInput({threadId}) {
+  const [content, setContent] = useState('');
   const dispatch = useDispatch();
 
   const onSubmit = (e) => {
     e.preventDefault();
     if (content.trim()) {
       dispatch(asyncAddComment(threadId, content));
-      setContent("");
+      setContent('');
     }
   };
 
@@ -26,9 +26,9 @@ function CommentInput({ threadId }) {
           rows="4"
           required
           className="
-            w-full p-4 
-            border-4 border-black 
-            resize-none 
+            w-full p-4
+            border-4 border-black
+            resize-none
             outline-none
             bg-[#fefefe]
             focus:bg-yellow-100

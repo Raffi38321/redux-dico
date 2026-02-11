@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-const UserCard = ({ user, score }) => {
-  const { name, avatar } = user;
+const UserCard = ({user, score}) => {
+  const {name, avatar} = user;
 
   return (
     <div

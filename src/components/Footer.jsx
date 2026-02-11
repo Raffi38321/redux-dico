@@ -1,11 +1,11 @@
-import React from "react";
-import { FaPlusCircle } from "react-icons/fa";
-import { IoHome } from "react-icons/io5";
-import { PiRankingThin } from "react-icons/pi";
-import { Link, useLocation } from "react-router-dom";
+import React from 'react';
+import {FaPlusCircle} from 'react-icons/fa';
+import {IoHome} from 'react-icons/io5';
+import {PiRankingThin} from 'react-icons/pi';
+import {Link, useLocation} from 'react-router-dom';
 
 const Footer = () => {
-  const { pathname } = useLocation();
+  const {pathname} = useLocation();
 
   const itemStyle = (active) =>
     `
@@ -16,20 +16,20 @@ const Footer = () => {
     transition-all
     active:translate-x-[2px] active:translate-y-[2px]
     active:shadow-none
-    ${active ? "bg-black text-white" : "bg-[#FFD36A]"}
+    ${active ? 'bg-black text-white' : 'bg-[#FFD36A]'}
   `;
 
   return (
     <footer className="sticky bottom-0 z-50">
       <div className="flex items-center justify-center gap-16 px-6 py-4 bg-[#FFA240] ">
-        <Link to="/" className={itemStyle(pathname === "/")}>
+        <Link to="/" className={itemStyle(pathname === '/')}>
           <IoHome className="text-xl" />
           <span className="text-[10px] font-bold">Home</span>
         </Link>
 
         <Link
           to="/leaderboards"
-          className={itemStyle(pathname === "/leaderboards")}
+          className={itemStyle(pathname === '/leaderboards')}
         >
           <PiRankingThin className="text-2xl" />
           <span className="text-[10px] font-bold">Rank</span>
@@ -37,7 +37,7 @@ const Footer = () => {
 
         <Link
           to="/create-thread"
-          className={itemStyle(pathname === "/create-thread")}
+          className={itemStyle(pathname === '/create-thread')}
         >
           <FaPlusCircle className="text-2xl" />
           <span className="text-[10px] font-bold">Create</span>

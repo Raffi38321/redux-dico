@@ -1,20 +1,20 @@
-import { Route, Routes } from "react-router-dom";
-import LoginPage from "./pages/loginPage";
-import RegisterPage from "./pages/RegisterPage";
-import { useDispatch, useSelector } from "react-redux";
-import Navbar from "./components/Navbar";
-import { asyncUnsetAuthUser } from "./states/authUser/action";
-import HomePage from "./pages/HomePage";
-import { useEffect } from "react";
-import { asyncPreloadProcess } from "./states/isPreload/action";
-import Footer from "./components/Footer";
-import CreateThreadsPage from "./pages/CreateThreadsPage";
-import LeaderBoardPage from "./pages/LeaderBoardPage";
-import DetailedThreadPage from "./pages/DetailedThreadPage";
-import Loading from "./components/Loading";
+import {Route, Routes} from 'react-router-dom';
+import LoginPage from './pages/loginPage';
+import RegisterPage from './pages/RegisterPage';
+import {useDispatch, useSelector} from 'react-redux';
+import Navbar from './components/Navbar';
+import {asyncUnsetAuthUser} from './states/authUser/action';
+import HomePage from './pages/HomePage';
+import {useEffect} from 'react';
+import {asyncPreloadProcess} from './states/isPreload/action';
+import Footer from './components/Footer';
+import CreateThreadsPage from './pages/CreateThreadsPage';
+import LeaderBoardPage from './pages/LeaderBoardPage';
+import DetailedThreadPage from './pages/DetailedThreadPage';
+import Loading from './components/Loading';
 
 function App() {
-  const { authUser = null } = useSelector((states) => states);
+  const {authUser = null} = useSelector((states) => states);
   const dispatch = useDispatch();
 
   const signOut = () => {

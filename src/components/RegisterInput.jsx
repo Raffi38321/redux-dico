@@ -1,11 +1,11 @@
-import React from "react";
-import useInput from "../hooks/useInput";
-import InputBox from "./InputBox";
+import React from 'react';
+import useInput from '../hooks/useInput';
+import InputBox from './InputBox';
 
-const RegisterInput = ({ register }) => {
-  const [name, onNameChange] = useInput("");
-  const [email, onEmailChange] = useInput("");
-  const [password, onPasswordChange] = useInput("");
+const RegisterInput = ({register}) => {
+  const [name, onNameChange] = useInput('');
+  const [email, onEmailChange] = useInput('');
+  const [password, onPasswordChange] = useInput('');
   return (
     <>
       <>
@@ -16,27 +16,27 @@ const RegisterInput = ({ register }) => {
           <InputBox
             change={onNameChange}
             input={name}
-            displayName={"Nama"}
+            displayName={'Nama'}
             type="text"
           />
           <InputBox
             change={onEmailChange}
             input={email}
-            displayName={"Email"}
+            displayName={'Email'}
             type="email"
           />
           <InputBox
             change={onPasswordChange}
             input={password}
             type="password"
-            displayName={"Password"}
+            displayName={'Password'}
           />
           <button
             type="submit"
             className="w-full bg-blue-500 text-white font-bold py-2 border-4 border-black shadow-[4px_4px_0px_0px_#000] active:translate-x-1 active:translate-y-1 active:shadow-none"
             onClick={(e) => {
               e.preventDefault();
-              register({ email, password, name });
+              register({email, password, name});
             }}
           >
             GAS BIKIN

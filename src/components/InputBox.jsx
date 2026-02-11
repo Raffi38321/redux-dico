@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-const InputBox = ({ displayName, input, change, type = "text" }) => {
+const InputBox = ({displayName, input, change, type = 'text'}) => {
   return (
     <div className="mb-6">
       <label className="block font-bold mb-1">{displayName}</label>

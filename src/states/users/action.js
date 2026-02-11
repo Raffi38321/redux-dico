@@ -1,8 +1,8 @@
-import { hideLoading, showLoading } from "@dimasmds/react-redux-loading-bar";
-import api from "../../utils/api";
+import {hideLoading, showLoading} from '@dimasmds/react-redux-loading-bar';
+import api from '../../utils/api';
 
 const ActionType = {
-  RECEIVE_USERS: "RECEIVE_USERS",
+  RECEIVE_USERS: 'RECEIVE_USERS',
 };
 
 function receiveUserFromApi(users) {
@@ -14,11 +14,11 @@ function receiveUserFromApi(users) {
   };
 }
 
-function asyncRegisterUser({ name, email, password }) {
+function asyncRegisterUser({name, email, password}) {
   return async (dispatch) => {
     dispatch(showLoading());
     try {
-      await api.register({ name, email, password });
+      await api.register({name, email, password});
     } catch (error) {
       alert(error.message);
     }
@@ -26,4 +26,4 @@ function asyncRegisterUser({ name, email, password }) {
   };
 }
 
-export { receiveUserFromApi, ActionType, asyncRegisterUser };
+export {receiveUserFromApi, ActionType, asyncRegisterUser};

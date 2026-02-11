@@ -1,4 +1,4 @@
-import LoadingBar from "@dimasmds/react-redux-loading-bar";
+import LoadingBar from '@dimasmds/react-redux-loading-bar';
 
 const Loading = () => {
   return (

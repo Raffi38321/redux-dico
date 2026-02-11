@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { asyncSetLeaderBoards } from "../states/leaderBoards/action";
-import UserCard from "../components/UserCard";
+import React, {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {asyncSetLeaderBoards} from '../states/leaderBoards/action';
+import UserCard from '../components/UserCard';
 
 const LeaderBoardPage = () => {
-  const { leaderBoards = [] } = useSelector((states) => states);
+  const {leaderBoards = []} = useSelector((states) => states);
   const dispatch = useDispatch();
 
   useEffect(() => {

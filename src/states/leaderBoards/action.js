@@ -1,7 +1,7 @@
-import api from "../../utils/api";
-import { hideLoading, showLoading } from "@dimasmds/react-redux-loading-bar";
+import api from '../../utils/api';
+import {hideLoading, showLoading} from '@dimasmds/react-redux-loading-bar';
 const actionType = {
-  RECEIVE_LEADERBOARDS: "RECEIVE_LEADERBOARDS",
+  RECEIVE_LEADERBOARDS: 'RECEIVE_LEADERBOARDS',
 };
 
 function receiveLeaderBoardsFromAPi(leaderBoards) {
@@ -26,4 +26,4 @@ function asyncSetLeaderBoards() {
   };
 }
 
-export { actionType, asyncSetLeaderBoards, receiveLeaderBoardsFromAPi };
+export {actionType, asyncSetLeaderBoards, receiveLeaderBoardsFromAPi};

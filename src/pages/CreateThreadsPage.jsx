@@ -1,9 +1,9 @@
-import React from "react";
-import useInput from "../hooks/useInput";
-import InputBox from "../components/InputBox";
-import { useDispatch } from "react-redux";
-import { asyncAddThread } from "../states/threads/action";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import useInput from '../hooks/useInput';
+import InputBox from '../components/InputBox';
+import {useDispatch} from 'react-redux';
+import {asyncAddThread} from '../states/threads/action';
+import {useNavigate} from 'react-router-dom';
 
 const CreateThreadsPage = () => {
   const [title, onTitleChange] = useInput();
@@ -13,8 +13,8 @@ const CreateThreadsPage = () => {
   const navigate = useNavigate();
   const onPostingThread = (e) => {
     e.preventDefault();
-    dispatch(asyncAddThread({ title, body, category }));
-    navigate("/");
+    dispatch(asyncAddThread({title, body, category}));
+    navigate('/');
   };
   return (
     <div className="flex flex-col items-center justify-center gap-4">
@@ -23,12 +23,12 @@ const CreateThreadsPage = () => {
           Create Threads
         </h2>
 
-        <InputBox displayName={"Title"} change={onTitleChange} input={title} />
+        <InputBox displayName={'Title'} change={onTitleChange} input={title} />
 
-        <InputBox displayName={"Body"} change={onBodyChange} input={body} />
+        <InputBox displayName={'Body'} change={onBodyChange} input={body} />
 
         <InputBox
-          displayName={"Category"}
+          displayName={'Category'}
           change={onCategoryChange}
           input={category}
         />

@@ -1,8 +1,8 @@
-import React from "react";
-import useInput from "../hooks/useInput";
-import InputBox from "./InputBox";
+import React from 'react';
+import useInput from '../hooks/useInput';
+import InputBox from './InputBox';
 
-const LoginInput = ({ onLogin }) => {
+const LoginInput = ({onLogin}) => {
   const [email, onEmailChange] = useInput();
   const [password, onPasswordChange] = useInput();
 
@@ -14,14 +14,14 @@ const LoginInput = ({ onLogin }) => {
         </h2>
 
         <InputBox
-          displayName={"Email"}
+          displayName={'Email'}
           input={email}
           change={onEmailChange}
           type="email"
         />
 
         <InputBox
-          displayName={"Password"}
+          displayName={'Password'}
           change={onPasswordChange}
           input={password}
           type="password"
@@ -31,7 +31,7 @@ const LoginInput = ({ onLogin }) => {
           className="w-full bg-blue-500 text-white font-bold py-2 border-4 border-black shadow-[4px_4px_0px_0px_#000] active:translate-x-1 active:translate-y-1 active:shadow-none"
           onClick={(e) => {
             e.preventDefault();
-            onLogin({ email, password });
+            onLogin({email, password});
           }}
         >
           GAS LOGIN

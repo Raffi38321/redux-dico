@@ -1,4 +1,4 @@
-import { actionType } from "./action";
+import {actionType} from './action';
 
 const leaderboardsReducer = (leaderBoards = [], action = {}) => {
   switch (action.type) {

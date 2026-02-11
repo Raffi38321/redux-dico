@@ -1,8 +1,8 @@
-import React from "react";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { asyncPopulateUsersAndThreads } from "../states/shared/action";
-import ThreadCard from "../components/ThreadCard";
+import React from 'react';
+import {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {asyncPopulateUsersAndThreads} from '../states/shared/action';
+import ThreadCard from '../components/ThreadCard';
 
 const HomePage = () => {
   const {

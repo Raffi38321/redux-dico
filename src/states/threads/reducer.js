@@ -1,4 +1,4 @@
-import { actionType } from "./action";
+import {actionType} from './action';
 
 const threadsReducer = (threads = [], action = {}) => {
   switch (action.type) {
@@ -9,13 +9,13 @@ const threadsReducer = (threads = [], action = {}) => {
     case actionType.VOTE_THREAD:
       return threads.map((thread) => {
         if (thread.id === action.payload.threadId) {
-          const { vote, userId } = action.payload;
+          const {vote, userId} = action.payload;
 
           const updatedUpVotesBy = thread.upVotesBy.filter(
-            (id) => id !== userId,
+              (id) => id !== userId,
           );
           const updatedDownVotesBy = thread.downVotesBy.filter(
-            (id) => id !== userId,
+              (id) => id !== userId,
           );
 
           if (vote.voteType === 1) {
@@ -35,15 +35,15 @@ const threadsReducer = (threads = [], action = {}) => {
     case actionType.VOTE_COMMENT:
       return threads.map((thread) => {
         if (thread.id === action.payload.threadId) {
-          const { commentId, vote, userId } = action.payload;
+          const {commentId, vote, userId} = action.payload;
 
           const updatedComments = thread.comments?.map((comment) => {
             if (comment.id === commentId) {
               const updatedUpVotesBy = comment.upVotesBy.filter(
-                (id) => id !== userId,
+                  (id) => id !== userId,
               );
               const updatedDownVotesBy = comment.downVotesBy.filter(
-                (id) => id !== userId,
+                  (id) => id !== userId,
               );
 
               if (vote.voteType === 1) {
