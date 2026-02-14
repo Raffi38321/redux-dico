@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { asyncPopulateUsersAndThreads } from "../states/shared/action";
-import ThreadCard from "../components/ThreadCard";
-import TagCard from "../components/TagCard";
+import React, {useState} from 'react';
+import {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {asyncPopulateUsersAndThreads} from '../states/shared/action';
+import ThreadCard from '../components/ThreadCard';
+import TagCard from '../components/TagCard';
 
 const HomePage = () => {
   const {
@@ -31,7 +31,7 @@ const HomePage = () => {
 
   const tags = [...new Set(threads.map((t) => t.category))];
 
-  const handleFilterTag = ({ text }) => {
+  const handleFilterTag = ({text}) => {
     if (filteredThreads[0].category === text) {
       setFilteredThreads(threads);
     } else {

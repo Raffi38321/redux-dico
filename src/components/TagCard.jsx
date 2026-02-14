@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-const TagCard = ({ tag, handleFilterTag }) => {
+const TagCard = ({tag, handleFilterTag}) => {
   const onFilterTag = () => {
-    handleFilterTag({ text: tag });
+    handleFilterTag({text: tag});
   };
 
   return (
