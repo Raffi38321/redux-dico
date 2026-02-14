@@ -1,17 +1,17 @@
-import { useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import {useEffect} from 'react';
+import {useParams, Link} from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
 import {
   asyncReceiveThreadDetail,
   asyncVoteThreadDetail,
-} from "../states/threadDetail/action";
-import CommentCard from "../components/CommentCard";
-import CommentInput from "../components/CommentInput";
-import postedAt from "../utils/dateFormat";
-import { HiOutlineThumbDown, HiOutlineThumbUp } from "react-icons/hi";
+} from '../states/threadDetail/action';
+import CommentCard from '../components/CommentCard';
+import CommentInput from '../components/CommentInput';
+import postedAt from '../utils/dateFormat';
+import {HiOutlineThumbDown, HiOutlineThumbUp} from 'react-icons/hi';
 
 function DetailedThreadPage() {
-  const { id } = useParams();
+  const {id} = useParams();
   const dispatch = useDispatch();
   const threadDetail = useSelector((s) => s.threadDetail);
   const authUser = useSelector((s) => s.authUser);
@@ -76,27 +76,27 @@ function DetailedThreadPage() {
 
           <div
             className="prose max-w-none mb-6"
-            dangerouslySetInnerHTML={{ __html: threadDetail.body }}
+            dangerouslySetInnerHTML={{__html: threadDetail.body}}
           />
 
           <div className="flex items-center gap-4 pt-4 border-t-4 border-black">
             <button
               onClick={onUpVote}
               className={`flex items-center gap-2 px-4 py-2 border-4 border-black font-bold shadow-[4px_4px_0_0_#000] transition
-                ${isUpVoted ? "bg-red-600" : "bg-white hover:bg-green-200"}
+                ${isUpVoted ? 'bg-red-600' : 'bg-white hover:bg-green-200'}
               `}
             >
-              <HiOutlineThumbUp className="text-lg" />{" "}
+              <HiOutlineThumbUp className="text-lg" />{' '}
               {threadDetail.upVotesBy.length}
             </button>
 
             <button
               onClick={onDownVote}
               className={`flex items-center gap-2 px-4 py-2 border-4 border-black font-bold shadow-[4px_4px_0_0_#000] transition
-                ${isDownVoted ? "bg-red-600" : "bg-white hover:bg-red-200"}
+                ${isDownVoted ? 'bg-red-600' : 'bg-white hover:bg-red-200'}
               `}
             >
-              <HiOutlineThumbDown className="text-lg" />{" "}
+              <HiOutlineThumbDown className="text-lg" />{' '}
               {threadDetail.downVotesBy.length}
             </button>
 

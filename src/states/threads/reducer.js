@@ -1,4 +1,4 @@
-import { actionType } from "./action";
+import {actionType} from './action';
 
 const threadsReducer = (threads = [], action = {}) => {
   switch (action.type) {
@@ -8,15 +8,15 @@ const threadsReducer = (threads = [], action = {}) => {
       return [action.payload.thread, ...threads];
     case actionType.VOTE_THREAD:
       return threads.map((thread) => {
-        console.log("reducer jalan");
+        console.log('reducer jalan');
         if (thread.id === action.payload.threadId) {
-          const { vote, userId } = action.payload;
+          const {vote, userId} = action.payload;
 
           const updatedUpVotesBy = thread.upVotesBy.filter(
-            (id) => id !== userId,
+              (id) => id !== userId,
           );
           const updatedDownVotesBy = thread.downVotesBy.filter(
-            (id) => id !== userId,
+              (id) => id !== userId,
           );
 
           if (vote.voteType === 1) {

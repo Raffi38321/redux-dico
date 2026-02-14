@@ -1,4 +1,4 @@
-import { actionType } from "./action";
+import {actionType} from './action';
 
 const threadDetailReducer = (threadDetail = null, action = {}) => {
   switch (action.type) {
@@ -12,13 +12,13 @@ const threadDetailReducer = (threadDetail = null, action = {}) => {
         comments: [action.payload.comment, ...threadDetail.comments],
       };
     case actionType.VOTE_THREAD_DETAIL: {
-      const { vote, userId } = action.payload;
+      const {vote, userId} = action.payload;
 
       const updatedUpVotesBy = threadDetail.upVotesBy.filter(
-        (id) => id !== userId,
+          (id) => id !== userId,
       );
       const updatedDownVotesBy = threadDetail.downVotesBy.filter(
-        (id) => id !== userId,
+          (id) => id !== userId,
       );
 
       if (vote.voteType === 1) {
@@ -39,15 +39,15 @@ const threadDetailReducer = (threadDetail = null, action = {}) => {
         vote: commentVote,
         userId: commentUserId,
       } = action.payload;
-      console.log("reducer jalan");
+      console.log('reducer jalan');
 
       const updatedComments = threadDetail.comments.map((comment) => {
         if (comment.id === commentId) {
           const updatedCommentUpVotesBy = comment.upVotesBy.filter(
-            (id) => id !== commentUserId,
+              (id) => id !== commentUserId,
           );
           const updatedCommentDownVotesBy = comment.downVotesBy.filter(
-            (id) => id !== commentUserId,
+              (id) => id !== commentUserId,
           );
 
           if (commentVote.voteType === 1) {

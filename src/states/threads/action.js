@@ -1,10 +1,10 @@
-import api from "../../utils/api";
-import { hideLoading, showLoading } from "@dimasmds/react-redux-loading-bar";
+import api from '../../utils/api';
+import {hideLoading, showLoading} from '@dimasmds/react-redux-loading-bar';
 const actionType = {
-  RECEIVE_THREADS: "RECEIVE_THREADS",
-  CREATE_THREADS: "CREATE_THREADS",
-  VOTE_THREAD: "VOTE_THREAD",
-  VOTE_COMMENT: "VOTE_COMMENT",
+  RECEIVE_THREADS: 'RECEIVE_THREADS',
+  CREATE_THREADS: 'CREATE_THREADS',
+  VOTE_THREAD: 'VOTE_THREAD',
+  VOTE_COMMENT: 'VOTE_COMMENT',
 };
 
 function receiveThreadsFromApi(threads) {
@@ -25,7 +25,7 @@ function addThreadCreator(thread) {
   };
 }
 
-function voteThreadActionCreator({ threadId, vote, userId }) {
+function voteThreadActionCreator({threadId, vote, userId}) {
   return {
     type: actionType.VOTE_THREAD,
     payload: {
@@ -36,72 +36,12 @@ function voteThreadActionCreator({ threadId, vote, userId }) {
   };
 }
 
-function asyncAddThread({ title, body, category }) {
+function asyncAddThread({title, body, category}) {
   return async (dispatch) => {
     dispatch(showLoading());
     try {
-      const thread = await api.createThread({ title, body, category });
+      const thread = await api.createThread({title, body, category});
       dispatch(addThreadCreator(thread));
-    } catch (error) {
-      alert(error.message);
-    }
-    dispatch(hideLoading());
-  };
-}
-
-function asyncUpVoteThread(threadId) {
-  return async (dispatch, getState) => {
-    const { authUser } = getState();
-    dispatch(showLoading());
-    try {
-      const vote = await api.upVoteThread(threadId);
-      dispatch(
-        voteThreadActionCreator({
-          threadId,
-          vote: { ...vote, voteType: 1 },
-          userId: authUser.id,
-        }),
-      );
-    } catch (error) {
-      alert(error.message);
-    }
-    dispatch(hideLoading());
-  };
-}
-
-function asyncDownVoteThread(threadId) {
-  return async (dispatch, getState) => {
-    const { authUser } = getState();
-    dispatch(showLoading());
-    try {
-      const vote = await api.downVoteThread(threadId);
-      dispatch(
-        voteThreadActionCreator({
-          threadId,
-          vote: { ...vote, voteType: -1 },
-          userId: authUser.id,
-        }),
-      );
-    } catch (error) {
-      alert(error.message);
-    }
-    dispatch(hideLoading());
-  };
-}
-
-function asyncNeutralVoteThread(threadId) {
-  return async (dispatch, getState) => {
-    const { authUser } = getState();
-    dispatch(showLoading());
-    try {
-      const vote = await api.neutralVoteThread(threadId);
-      dispatch(
-        voteThreadActionCreator({
-          threadId,
-          vote: { ...vote, voteType: 0 },
-          userId: authUser.id,
-        }),
-      );
     } catch (error) {
       alert(error.message);
     }
@@ -111,17 +51,17 @@ function asyncNeutralVoteThread(threadId) {
 
 function asyncVoteThread(threadId, voteTypes) {
   return async (dispatch, getState) => {
-    const { authUser, threads } = getState();
+    const {authUser, threads} = getState();
     const userId = authUser.id;
     const thread = threads.find((t) => t.id === threadId);
     const wasUpVoted = thread.upVotesBy.includes(userId);
     const wasDownvoted = thread.downVotesBy.includes(userId);
     dispatch(
-      voteThreadActionCreator({
-        threadId,
-        vote: { voteType: voteTypes },
-        userId,
-      }),
+        voteThreadActionCreator({
+          threadId,
+          vote: {voteType: voteTypes},
+          userId,
+        }),
     );
     try {
       if (voteTypes === 1) await api.upVoteThread(threadId);
@@ -132,11 +72,11 @@ function asyncVoteThread(threadId, voteTypes) {
       if (wasUpVoted) rolBack = 1;
       else if (wasDownvoted) rolBack = -1;
       dispatch(
-        voteThreadActionCreator({
-          threadId,
-          vote: { voteType: rolBack },
-          userId,
-        }),
+          voteThreadActionCreator({
+            threadId,
+            vote: {voteType: rolBack},
+            userId,
+          }),
       );
       alert(error.message);
       console.log(error.message);
@@ -149,9 +89,6 @@ export {
   receiveThreadsFromApi,
   actionType,
   addThreadCreator,
-  asyncUpVoteThread,
-  asyncDownVoteThread,
-  asyncNeutralVoteThread,
   voteThreadActionCreator,
   asyncVoteThread,
 };

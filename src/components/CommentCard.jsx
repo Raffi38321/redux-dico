@@ -1,9 +1,9 @@
-import { useDispatch, useSelector } from "react-redux";
-import { asyncVoteCommentDetail } from "../states/threadDetail/action";
-import { HiOutlineThumbDown, HiOutlineThumbUp } from "react-icons/hi";
-import postedAt from "../utils/dateFormat.js";
+import {useDispatch, useSelector} from 'react-redux';
+import {asyncVoteCommentDetail} from '../states/threadDetail/action';
+import {HiOutlineThumbDown, HiOutlineThumbUp} from 'react-icons/hi';
+import postedAt from '../utils/dateFormat.js';
 
-function CommentCard({ comment, threadId }) {
+function CommentCard({comment, threadId}) {
   const dispatch = useDispatch();
   const authUser = useSelector((s) => s.authUser);
 
@@ -53,10 +53,10 @@ function CommentCard({ comment, threadId }) {
                 border-4 border-black font-bold
                 shadow-[3px_3px_0_0_#000]
                 transition
-                ${isUpVoted ? "bg-red-600" : "bg-white hover:bg-green-200"}
+                ${isUpVoted ? 'bg-red-600' : 'bg-white hover:bg-green-200'}
               `}
             >
-              <HiOutlineThumbUp className="text-lg" />{" "}
+              <HiOutlineThumbUp className="text-lg" />{' '}
               {comment.upVotesBy.length}
             </button>
 
@@ -67,10 +67,10 @@ function CommentCard({ comment, threadId }) {
                 border-4 border-black font-bold
                 shadow-[3px_3px_0_0_#000]
                 transition
-                ${isDownVoted ? "bg-red-600" : "bg-white hover:bg-red-200"}
+                ${isDownVoted ? 'bg-red-600' : 'bg-white hover:bg-red-200'}
               `}
             >
-              <HiOutlineThumbDown className="text-lg" />{" "}
+              <HiOutlineThumbDown className="text-lg" />{' '}
               {comment.downVotesBy.length}
             </button>
           </div>
